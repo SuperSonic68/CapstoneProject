@@ -21,7 +21,7 @@ public class BallResetScript : MonoBehaviour
     public void Reset()
     {
         transform.position = new Vector3(0f, 0f, 0f);
-        GetComponent<BallScript>().Speed = 5f;
+        GetComponent<BallScript>().Speed = 1.25f;
         GetComponent<ScoreScript>().Scored = false;
         GetComponent<SphereCollider>().enabled = true;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

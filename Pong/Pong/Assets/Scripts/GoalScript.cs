@@ -11,7 +11,7 @@ public class GoalScript : MonoBehaviour {
 
     public void Goal()
     {
-        Debug.Break();
+        //Debug.Break();
 
         Vector3 pos = transform.position;
         float x = transform.position.x;

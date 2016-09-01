@@ -6,6 +6,8 @@ public class PlayerMovementScript : MonoBehaviour {
 
     public float WallLimit, PaddleSize;
 
+    public GameObject Paddle;
+
 	// Use this for initialization
 	void Start () {
         WallLimit = 4f;
@@ -36,7 +38,12 @@ public class PlayerMovementScript : MonoBehaviour {
         if (Physics.Raycast(ray, out rch))
         {
             Vector3 movem = new Vector3(0f, rch.point.y, rch.point.z);
+
+            Paddle.GetComponent<PaddleScript>().DeltaYZ(movem.y - pos.y, movem.z - pos.z);
+
             pos = newPos2(pos, movem);
+
+           
         }
         transform.position = pos;
 

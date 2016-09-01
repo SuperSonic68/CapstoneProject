@@ -53,6 +53,9 @@ public class BallScript : MonoBehaviour
         Speed += 0.1f;
 
         Vector3 N = other.contacts[0].normal;
+
+        //N = (other.contacts[0].point - transform.position).normalized * -1;
+
         Vector3 L = transform.forward * -1;
 
         Debug.Log(N + " " + L + " " + (2 * Vector3.Dot(L, N) * N - L));

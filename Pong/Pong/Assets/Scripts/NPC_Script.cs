@@ -4,8 +4,10 @@ using System.Collections;
 public class NPC_Script : MonoBehaviour
 {
 
-    public GameObject Target;
+    public GameObject Target, Paddle;
     public float WallLimit, PaddleSize;
+
+
 
     public float Speed;
 
@@ -38,6 +40,9 @@ public class NPC_Script : MonoBehaviour
         float x = pos.x;
         y = Mathf.Max(Mathf.Min(pos.y, WallLimit - PaddleSize), -WallLimit + PaddleSize);
         z = Mathf.Max(Mathf.Min(pos.z, WallLimit - PaddleSize), -WallLimit + PaddleSize);
+        //-(mov.y - pos.y)
+        //(mov.z - pos.z)
+        Paddle.GetComponent<PaddleScript>().DeltaYZ(-(mov.y - pos.y), (mov.z - pos.z));
 
         transform.position = new Vector3(x,y,z);
     }

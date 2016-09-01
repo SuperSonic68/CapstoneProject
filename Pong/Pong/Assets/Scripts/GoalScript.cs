@@ -11,6 +11,8 @@ public class GoalScript : MonoBehaviour {
 
     public void Goal()
     {
+        Debug.Break();
+
         Vector3 pos = transform.position;
         float x = transform.position.x;
         if (x > 20)
@@ -23,7 +25,7 @@ public class GoalScript : MonoBehaviour {
         }
 
         transform.position = pos;
-        goalCamTicker = 300;
+        goalCamTicker = 60;
         goal = true;
 
         GetComponent<BallScript>().Speed = 0f;

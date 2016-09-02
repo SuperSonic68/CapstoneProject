@@ -9,6 +9,7 @@ public class ScoreScript : MonoBehaviour {
     public Text NPC_Score;
 
     private int playerScore, npcScore;
+	public Killcam killcam;
 
     public bool Scored;
 
@@ -44,6 +45,7 @@ public class ScoreScript : MonoBehaviour {
                 UpdateScore();
                 GetComponent<GoalScript>().Goal();
                 Scored = true;
+				killcam.Activate (this.gameObject);
             }
         }
     }

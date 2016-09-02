@@ -4,28 +4,31 @@ using System.Collections;
 public class GoalScript : MonoBehaviour {
 
     private bool goal;
-    private int goalCamTicker;
+    private float goalCamTicker;
+	public Killcam killcam;
 
     public GameObject Player_Paddle;
     public GameObject NPC_Paddle;
 
     public void Goal()
     {
-        Debug.Break();
+        //Debug.Break();
 
         Vector3 pos = transform.position;
         float x = transform.position.x;
         if (x > 20)
         {
             pos.x = 20;
+			goalCamTicker = 1f;
         }
         else if (x < -20)
         {
             pos.x = -20;
+			goalCamTicker = 8f;
         }
 
         transform.position = pos;
-        goalCamTicker = 60;
+        
         goal = true;
 
         GetComponent<BallScript>().Speed = 0f;
@@ -45,10 +48,13 @@ public class GoalScript : MonoBehaviour {
         {
             if (goalCamTicker < 0)
                 goal = false;
-            goalCamTicker--;
+			goalCamTicker -= Time.deltaTime;
 
-            if (!goal)
-                GetComponent<BallResetScript>().Reset();
+			if (!goal) {
+				GetComponent<BallResetScript>().Reset();
+				killcam.Deactivate ();
+			}
+                
         }
     }
 }

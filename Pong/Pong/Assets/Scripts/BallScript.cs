@@ -8,7 +8,7 @@ public class BallScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Speed = 5f;
+        Speed = 1.25f;
     }
 
     // Update is called once per frame
@@ -22,7 +22,14 @@ public class BallScript : MonoBehaviour
         bool hit = Physics.Raycast(transform.position, transform.forward, out rch);
         if (hit && rch.distance < 0.2f * Speed)
         {
-            Speed+= 0.1f;
+            if (rch.transform.gameObject.CompareTag("Paddle"))
+            {
+                float dy = rch.transform.gameObject.GetComponentInParent<PaddleScript>().dy;
+                float dz = rch.transform.gameObject.GetComponentInParent<PaddleScript>().dz;
+                Speed += (new Vector3(0f, dy, dz)).magnitude * 0.1f;
+            }
+
+            //Speed+= 0.1f;
             //Vector3 a = Vector3.Dot(transform.forward.normalized, rch.normal) * 2 * transform.forward.normalized - rch.normal;
             //Debug.Log(a + " " + rch.normal);
 
@@ -50,7 +57,13 @@ public class BallScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Speed += 0.1f;
+        //Speed += 0.1f;
+        if (other.transform.gameObject.CompareTag("Paddle"))
+        {
+            float dy = other.transform.gameObject.GetComponentInParent<PaddleScript>().dy;
+            float dz = other.transform.gameObject.GetComponentInParent<PaddleScript>().dz;
+            Speed += (new Vector3(0f, dy, dz)).magnitude * 0.1f;
+        }
 
         Vector3 N = other.contacts[0].normal;
 

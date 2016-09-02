@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Pong.unity
+- path: Assets/My Changes/LoadingScreen.unity
   isLoaded: 1
   isActive: 1

@@ -47,7 +47,7 @@ public class CanvasImageCycle : MonoBehaviour {
 
         if (timeElapsed >= 8.0f && !loading)
         {
-            StartCoroutine(LoadLevelWithBar(2));
+            StartCoroutine(LoadLevelWithBar(0));
             loading = true;
         }
     }
